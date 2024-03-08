@@ -13,7 +13,7 @@ def updown_game(com_num, user_num):
         print("Down 입니다. \n")
     else :
         return True
-    
+
 
 print("[+] UpDown 게임에 오신걸 환영합니다 !")
 print("[+] 기회는 총 '10'번 입니다! \n")
@@ -41,22 +41,22 @@ while (user_coin > 0):
 ## -------------------------------------------------------------------------
 
 ## ----------------------업다운 게임 실행 -----------------------------
-    try:
-        while(life > 0):
-            print("\n현재 {}번 남았습니다.".format(life))
-            user_num = int(input("[+] 숫자를 입력해 주세요 > "))
 
-            result = updown_game(com_num, user_num)
-        
-            if(result):
-                print("정답입니다!\n")
-                break
+    while(life > 0):
+        print("\n현재 {}번 남았습니다.".format(life))
+        user_num = int(input("[+] 숫자를 입력해 주세요 > "))
 
-            life = life -1
-    except:
-        print("숫자를 입력해 주세요")
+        # user_num 이 문자가 눌려지면 
+        # if (user_num == str()):
+        #     print("숫자를 써주세요")
+
+        result = updown_game(com_num, user_num)
+    
+        if(result):
+            print("정답입니다!\n")
+            break
         life = life -1
-        continue
+
 ## -------------------------재도전-------------------------------------
     if (life > 0 ):
         user_coin = user_coin + user_coin
