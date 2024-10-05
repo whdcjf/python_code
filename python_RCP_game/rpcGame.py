@@ -2,6 +2,35 @@ import random
 import time
 import sys
 import os
+import json
+
+#### 기능 다시만들기 
+
+def createUser(userName):
+    with open("user.txt", "r") as f :
+        userList = json.loads(f.read())
+    
+    newUser = {"name": userName, "coin":1000}
+
+    userList.append(newUser)
+
+    with open("user.txt", "w") as f :
+        newUserList = json.dumps(userList)
+        f.write(newUserList )
+
+    print("[$] {}님의 정보를 생성 했습니다. ".format(userName))
+
+    return newUser
+
+def loadUser(userName):
+    with open("user.txt", "r") as f :
+        userList = json.loads(f.read())
+    
+        for user in userList :
+            if (user["name"] == userName):
+                return user
+            
+    return createUser(userName) 
 
 def clearConsole():
     command = 'clear'
@@ -24,7 +53,11 @@ print("[$] 가위/바위/보 게임 Machine [$]")
 print("$-+-+-+-+-+-+-+-+-+-+-+-+-$")
 
 userName = input("이름 : > ")
-userCoin = 1000
+
+userInfo = loadUser(userName)
+
+userName = userInfo["name"]
+userCoin = userInfo["coin"]
 
 print("[$] {} 님! 대박나세요!".format(userName))
 print("[$] 입장을 도와드리겠습니다. 잠시만 기다려주세요...")
